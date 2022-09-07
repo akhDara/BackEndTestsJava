@@ -1,4 +1,4 @@
-package LessonBackEndFirstTest;
+package com.geekbrains;
 
 import LessonBackEndFirst.Resolver;
 import org.junit.jupiter.api.BeforeAll;
