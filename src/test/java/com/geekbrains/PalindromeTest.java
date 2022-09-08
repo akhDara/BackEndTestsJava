@@ -1,4 +1,4 @@
-package LessonBackEndFirstTest;
+package com.geekbrains;
 
 import LessonBackEndFirst.Palindrome;
 import org.assertj.core.api.Assertions;
