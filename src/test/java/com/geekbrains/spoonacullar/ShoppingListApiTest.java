@@ -3,7 +3,6 @@ package com.geekbrains.spoonacullar;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import net.javacrumbs.jsonunit.JsonAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 
@@ -11,8 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
-
-import static net.javacrumbs.jsonunit.core.Option.IGNORING_ARRAY_ORDER;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
@@ -33,7 +30,7 @@ public class ShoppingListApiTest {
     @Order(1)
     @DisplayName("Add to Shopping List")
     void testAddToShoppingList () {
-        String response = RestAssured.given()
+        RestAssured.given()
                 .queryParam("apiKey", "8a31eefd36604b8ca910047c1b6a1ce0")
                 .queryParam("hash", "c2d28ebfb0fb500f5d5cc658ec7ab04b8570f0f3")
                 .body(requestBody)
@@ -44,15 +41,18 @@ public class ShoppingListApiTest {
                 .time(Matchers.lessThanOrEqualTo(1700L))
                 .when()
                 .post("/mealplanner/myusername1/shopping-list/items")
-                .body()
-                .asPrettyString();
+                .getBody()
+                .jsonPath()
+                .prettyPeek();
+//                .as(ApiSearchResult.class);
 
-        String expected = readResourceAsString("expected.json");
-        JsonAssert.assertJsonEquals(
-                expected,
-                response,
-                JsonAssert.when(IGNORING_ARRAY_ORDER)
-        );
+
+//       String expected = readResourceAsString("expected.json");
+//        JsonAssert.assertJsonEquals(
+//                expected,
+//                response,
+//                JsonAssert.when(Option.IGNORING_ARRAY_ORDER)
+//        );
 
     }
 
