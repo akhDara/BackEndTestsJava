@@ -1,19 +1,24 @@
 package Builder;
 
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
+
+import api.*;
 
 public class Main {
     public static void main(String[] args) {
-        User user = User.builder()
-                .setName("Ivan")
-                .setSurname("Ivanov")
-                .setAddress("Address")
-                .setEmail("123@ya.ru")
-                .build();
+        SpoonaccularService spoonaccularService = new SpoonaccularService();
+        ApiSearchResult recipes = spoonaccularService.findRecipes("Bread", 3);
+        System.out.println(recipes);
 
-        RequestSpecification requestSpecification =
-                new RequestSpecBuilder()
-                        .build();
+
+        ApiGetShoppingListResult apiGetShoppingListResult = spoonaccularService.shoppingResults();
+        System.out.println(apiGetShoppingListResult);
+
+
+        ApiDeleteShoppingListResult apiDeleteShoppingListResult = spoonaccularService.deleteShoppingList();
+        System.out.println(apiDeleteShoppingListResult);
+
+        ApiPostInShoppingListResult postMethode = spoonaccularService.connect(new ApiPostInShoppingListRequest("1 package baking powder", "Baking", true));
+        System.out.println(postMethode);
+
     }
 }

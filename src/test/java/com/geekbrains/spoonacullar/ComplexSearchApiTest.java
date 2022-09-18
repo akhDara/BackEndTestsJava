@@ -1,5 +1,6 @@
 package com.geekbrains.spoonacullar;
 
+import api.ApiSearchResult;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -30,7 +31,7 @@ public class ComplexSearchApiTest {
     @Test
     @DisplayName("Проверка поиска:хлеб")
     void testSearchBread () {
-        String actually = RestAssured.given()
+        ApiSearchResult actually = RestAssured.given()
                 .param("number", 3)
                 .param("limitLicense", true)
                 .param("query", "bread")
@@ -47,7 +48,7 @@ public class ComplexSearchApiTest {
                 .when()
                 .get("/recipes/complexSearch")
                 .body()
-                .asPrettyString();
+                .as(ApiSearchResult.class);
 
         String expected = readResourceAsString("expected.json");
         /*JsonAssert.assertJsonEquals(
