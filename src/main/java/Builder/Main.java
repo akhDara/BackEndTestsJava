@@ -5,7 +5,6 @@ import com.geekbrains.db.dao.CategoriesMapper;
 import com.geekbrains.db.dao.ProductsMapper;
 import com.geekbrains.db.model.Categories;
 import com.geekbrains.db.model.Products;
-import com.geekbrains.db.model.ProductsExample;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
