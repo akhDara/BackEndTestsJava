@@ -31,9 +31,9 @@ public class Main {
         try (SqlSession session = sessionFactory.openSession()) {
             ProductsMapper productsMapper = session.getMapper(ProductsMapper.class);
             CategoriesMapper categoriesMapper = session.getMapper(CategoriesMapper.class);
-            Products product = productsMapper.selectByPrimaryKey(1196L);
+            Products product = productsMapper.selectByPrimaryKey(1269L);
             System.out.println(product.getId());
-            int deleteProducts= productsMapper.deleteByPrimaryKey(1196L);
+            int deleteProducts= productsMapper.deleteByPrimaryKey(1269L);
             System.out.println(deleteProducts);
             Categories category = categoriesMapper.selectByPrimaryKey(product.getCategoryId());
             System.out.println(category);
