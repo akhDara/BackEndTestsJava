@@ -1,0 +1,4 @@
+/allure-results/*.json
+/target/surefire-reports/*.dumpstream
+/target/*
+/.allure/*
